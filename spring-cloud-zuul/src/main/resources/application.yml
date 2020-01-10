@@ -1,0 +1,42 @@
+# 服务名称
+spring:
+  application:
+    name: spring-cloud-zuul
+# 服务端口号
+server:
+  port: 10003
+
+#Eureka 相关配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10000/eureka/
+
+zuul:
+  prefix: /api
+  strip-prefix: true
+  ignoredPatterns: /**/noRole/* #忽略所有包含/noRole/的地址请求
+  routes:
+    spring-cloud-user: /user/**
+  sensitive-headers:  # 过滤下面内容, 不会再传给以后的服务
+    - Cookie, Set-Cookie, Authorization
+  #  因为zuul是整合ribbon和hystrix的另一个客户端，所以我们需要自己导入spring-retry坐标，并且开启服务
+  retryable: true
+
+# ribbon 
+
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间（ms），默认值为250ms
+  ReadTimeout: 2000 # 通信超时时间（ms），默认值为2000ms
+  OkToRetryOnAllOperations: true # 是否对所有操作都进行重试
+  MaxAutoRetriesNextServer: 2 # 对同一服务不同实例重试次数（同一服务下集群个数的重试次数）
+  MaxAutoRetries: 2 # 对同一实例重试的次数（单个集群节点服务重试的次数）
+  
+# 开启熔断机制，超过六秒即开启熔断机制，网关内的时间排序：zuul的通信时间 > hystrix熔断时间 > retry重试时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
