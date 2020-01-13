@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import com.spring.cloud.common.vo.JacksonUtils;
+import  com.spring.cloud.common.vo.out.ResponseEntity;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -55,7 +57,12 @@ public class LoginFilter extends ZuulFilter{
 			currentContext.setSendZuulResponse(false);
 			// 返回401， 也可以考虑重定向到登录页
 			currentContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
-			currentContext.setResponseBody("请先登录");
+			ResponseEntity<String> re = ResponseEntity.error(HttpStatus.SC_UNAUTHORIZED, "请登录");
+			try {
+				currentContext.setResponseBody(JacksonUtils.obj2json(re));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		//如果校验通过， 可以考虑把用户信息放入上下文，继续向后执行

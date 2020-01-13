@@ -10,6 +10,7 @@
 		<module>spring-cloud-zuul</module>
 		<module>spring-cloud-config</module>
 		<module>spring-cloud-user</module>
+		<module>spring-cloud-common</module>
 	</modules>
 
 	<parent>

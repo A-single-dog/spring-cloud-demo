@@ -14,6 +14,10 @@
 		<module>spring-cloud-interface</module>
 	</modules>
 
+	<properties>
+		<spring-cloud-common-version>0.0.1-SNAPSHOT</spring-cloud-common-version>
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -28,6 +32,12 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<!-- 公共组件模块 -->
+		<dependency>
+			<groupId>com.spring.cloud</groupId>
+			<artifactId>spring-cloud-common</artifactId>
+			<version>${spring-cloud-common-version}</version>
 		</dependency>
 	</dependencies>
 
