@@ -1,0 +1,53 @@
+
+# 服务端口号
+server:
+  port: 10004
+  
+# 服务名称
+spring:
+  application:
+    name: spring-cloud-user
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.97.103.188:3306/springcloud?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: '000000'
+    type: com.alibaba.druid.pool.DruidDataSource  #这里是配置druid连接池，以下都是druid的配置信息
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+#Eureka 相关配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10000/eureka/
+      
+#  mybatis的mapper
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params:
+    count: countSql
+    
+logging:
+  level:
+    com:
+      spring:
+        cloud:
+          user: debug
