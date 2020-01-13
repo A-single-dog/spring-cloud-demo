@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
-import com.spring.cloud.common.vo.JacksonUtils;
+import com.spring.cloud.common.util.JacksonUtils;
 import  com.spring.cloud.common.vo.out.ResponseEntity;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;

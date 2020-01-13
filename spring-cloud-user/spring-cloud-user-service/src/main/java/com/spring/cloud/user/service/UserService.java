@@ -1,7 +1,7 @@
 package com.spring.cloud.user.service;
 
-import java.util.List;
-
+import com.spring.cloud.common.util.PageBean;
+import com.spring.cloud.common.vo.in.QueryVo;
 import com.spring.cloud.user.domain.User;
 
 /**
@@ -11,6 +11,6 @@ import com.spring.cloud.user.domain.User;
  **/
 public interface UserService {
 
-	List<User> findUsers();
+	PageBean<User> findUsers(QueryVo vo);
 }
 

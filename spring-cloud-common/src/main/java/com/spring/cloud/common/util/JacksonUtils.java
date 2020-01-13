@@ -1,4 +1,4 @@
-package com.spring.cloud.common.vo;
+package com.spring.cloud.common.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;

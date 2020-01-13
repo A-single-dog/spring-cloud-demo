@@ -1,17 +1,16 @@
 package com.spring.cloud.user.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.cloud.common.util.PageBean;
+import com.spring.cloud.common.vo.in.QueryVo;
 import com.spring.cloud.common.vo.out.ResponseEntity;
 import com.spring.cloud.user.domain.User;
 import com.spring.cloud.user.service.UserService;
-import com.spring.cloud.user.util.BeanUtil;
-import com.spring.cloud.user.vo.out.UserDto;
 
 /**
  * 用户类
@@ -26,11 +25,9 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/findUserList", method = RequestMethod.GET)
-	public ResponseEntity<List<UserDto>> findUserList() {
+	@RequestMapping(value = "/findUserList", method = RequestMethod.POST)
+	public ResponseEntity<PageBean<User>> findUserList(@RequestBody QueryVo vo) {
 
-		List<User> list = userService.findUsers();
-		List<UserDto> dtos = BeanUtil.copyList(list, UserDto.class);
-		return ResponseEntity.success(dtos);
+		return ResponseEntity.success(userService.findUsers(vo));
 	}
 }
