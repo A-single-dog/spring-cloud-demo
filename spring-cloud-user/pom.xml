@@ -9,9 +9,9 @@
 	<artifactId>spring-cloud-user</artifactId>
 	<packaging>pom</packaging>
 	<modules>
-		<module>spring-cloud-pojo</module>
-		<module>spring-cloud-service</module>
-		<module>spring-cloud-interface</module>
+		<module>spring-cloud-user-pojo</module>
+		<module>spring-cloud-user-service</module>
+		<module>spring-cloud-user-interface</module>
 	</modules>
 
 	<properties>
@@ -39,6 +39,26 @@
 			<artifactId>spring-cloud-common</artifactId>
 			<version>${spring-cloud-common-version}</version>
 		</dependency>
+		<!-- 数据库 -->
+		<dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+		<!-- 数据池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+        <!-- orm框架 -->
+         <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+        <!--  分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
 	</dependencies>
 
 	<!-- 构建工具 -->

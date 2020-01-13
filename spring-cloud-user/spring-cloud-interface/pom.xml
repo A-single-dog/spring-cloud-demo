@@ -5,5 +5,5 @@
     <artifactId>spring-cloud-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>spring-cloud-interface</artifactId>
+  <artifactId>spring-cloud-user-interface</artifactId>
 </project>
